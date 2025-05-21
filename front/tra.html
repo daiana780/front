@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Função TRA</title>
+    <style>
+        body { font-family: Arial; text-align: center; padding: 2rem; }
+        input { width: 100px; padding: 0.5rem; margin: 0.5rem; }
+        button { padding: 0.6rem 1.2rem; background-color: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        #resultado { margin-top: 2rem; background: #fff; padding: 1rem; border-radius: 5px; display: inline-block; max-width: 400px; text-align: left; white-space: pre-wrap; }
+    </style>
+</head>
+<body>
+
+    <h1>Função TRA: Soma ou Multiplica</h1>
+    <input type="number" id="a" placeholder="A"><br>
+    <input type="number" id="b" placeholder="B"><br>
+    <button onclick="calcularTRA()">Calcular</button>
+
+    <div id="resultado"></div>
+
+    <script>
+        function tra(a, b) {
+            return a === b ? a + b : a * b;
+        }
+
+        function calcularTRA() {
+            const a = parseFloat(document.getElementById("a").value);
+            const b = parseFloat(document.getElementById("b").value);
+
+            if (isNaN(a) || isNaN(b)) {
+                document.getElementById("resultado").innerText = "Digite dois números válidos.";
+                return;
+            }
+
+            const res = tra(a, b);
+            document.getElementById("resultado").innerText =
+                "Valor A: " + a + "\n" +
+                "Valor B: " + b + "\n\n" +
+                "Resultado: " + res;
+        }
+    </script>
+
+</body>
+</html>

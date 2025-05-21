@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciador de Cavalos</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f5f5f5;
+            padding: 40px;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .botoes {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-adicionar {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .btn-remover {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .btn-adicionar:hover {
+            background-color: #218838;
+        }
+
+        .btn-remover:hover {
+            background-color: #c82333;
+        }
+
+        #listaCavalos {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            min-height: 100px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        li {
+            padding: 8px 12px;
+            border-bottom: 1px solid #eee;
+        }
+
+        li:last-child {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>🐎 Gerenciador de Cavalos</h1>
+
+        <div class="botoes">
+            <button class="btn-adicionar" onclick="adicionarCavalo()">Adicionar Cavalo</button>
+            <button class="btn-remover" onclick="removerUltimoCavalo()">Remover Último</button>
+        </div>
+
+        <div id="listaCavalos">
+            <strong>Lista de Cavalos:</strong>
+            <ul id="lista"></ul>
+        </div>
+    </div>
+
+    <script>
+        // Array inicial de cavalos (nome e preço)
+        const cavalos = [
+            { nome: "Tatu com cobra", preco: 1000 },
+            { nome: "Mangalarga", preco: 20000 }
+        ];
+
+        // Função para exibir os cavalos na tela
+        function exibirCavalos() {
+            const listaElement = document.getElementById("lista");
+            listaElement.innerHTML = ""; // Limpa a lista antes de atualizar
+
+            if (cavalos.length === 0) {
+                listaElement.innerHTML = "<li>Nenhum cavalo cadastrado.</li>";
+                return;
+            }
+
+            cavalos.forEach((cavalo, index) => {
+                const item = document.createElement("li");
+                item.textContent = `${cavalo.nome} - R$${cavalo.preco}`;
+                listaElement.appendChild(item);
+            });
+        }
+
+        // Função para adicionar um novo cavalo
+        function adicionarCavalo() {
+            const nome = prompt("Digite o nome do cavalo:");
+            const preco = parseFloat(prompt("Digite o preço do cavalo:"));
+
+            if (nome && !isNaN(preco)) {
+                cavalos.push({ nome: nome, preco: preco });
+                exibirCavalos();
+            } else {
+                alert("Dados inválidos. Por favor, insira corretamente.");
+            }
+        }
+
+        // Função para remover o último cavalo
+        function removerUltimoCavalo() {
+            if (cavalos.length > 0) {
+                cavalos.pop();
+                exibirCavalos();
+            } else {
+                alert("Não há cavalos para remover.");
+            }
+        }
+
+        // Exibe os cavalos iniciais ao carregar a página
+        window.onload = exibirCavalos;
+    </script>
+
+</body>
+</html>

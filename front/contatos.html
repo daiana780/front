@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Gerenciador de Contatos</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f2f2f2;
+            padding: 40px;
+            margin: 0;
+        }
+
+        h1 {
+            color: #003366;
+            margin-bottom: 20px;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        button {
+            background-color: #003366;
+            color: white;
+            padding: 12px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #002244;
+        }
+
+        #listaContatos {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #eef;
+            border-radius: 8px;
+            display: none;
+            text-align: left;
+        }
+
+        .contato-item {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>📞 Gerenciador de Contatos</h1>
+
+        <!-- Botões -->
+        <button id="btnMostrar">Mostrar Contatos</button>
+        <button id="btnLimpar">Limpar Lista</button>
+
+        <!-- Área onde os contatos serão mostrados -->
+        <div id="listaContatos"></div>
+    </div>
+
+    <script>
+        // Lista de contatos como array de objetos
+        const contatos = [
+            { nome: 'Daiana', tel: 8881576841 },
+            { nome: 'Carol', tel: 8881332145 },
+            { nome: 'Duda', tel: 8843454788 }
+        ];
+
+        // Função para carregar os contatos na tela
+        function mostrarContatos() {
+            const listaDiv = document.getElementById('listaContatos');
+            let html = '<strong>📞 Lista de Contatos:</strong><br><br>';
+
+            contatos.forEach((contato) => {
+                html += `<div class="contato-item">
+                            <strong>Nome:</strong> ${contato.nome}<br>
+                            <strong>Telefone:</strong> ${contato.tel}<br>
+                            --------------------<br>
+                         </div>`;
+            });
+
+            listaDiv.innerHTML = html;
+            listaDiv.style.display = 'block';
+        }
+
+        // Função para limpar a lista
+        function limparLista() {
+            const listaDiv = document.getElementById('listaContatos');
+            listaDiv.innerHTML = '';
+            listaDiv.style.display = 'none';
+        }
+
+        // Eventos dos botões
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById('btnMostrar').addEventListener('click', mostrarContatos);
+            document.getElementById('btnLimpar').addEventListener('click', limparLista);
+        });
+    </script>
+
+</body>
+</html>

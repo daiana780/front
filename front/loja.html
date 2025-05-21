@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Gerenciador de Produtos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-adicionar {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .btn-remover {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .btn-adicionar:hover {
+            background-color: #218838;
+        }
+
+        .btn-remover:hover {
+            background-color: #c82333;
+        }
+
+        #listaProdutos {
+            margin-top: 20px;
+            text-align: left;
+            padding-left: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>🛒 Gerenciador de Produtos</h1>
+
+        <button class="btn-adicionar" onclick="adicionarProduto()">Adicionar Produto</button>
+        <button class="btn-remover" onclick="removerUltimoProduto()">Remover Último</button>
+
+        <div id="listaProdutos"></div>
+    </div>
+
+    <script>
+        // Array inicial de produtos (nome e preço juntos)
+        const produtos = [
+            { nome: "Camisa", preco: 70 },
+            { nome: "Calça", preco: 90 },
+            { nome: "Tênis", preco: 100 },
+            { nome: "Boné", preco: 40 }
+        ];
+
+        // Função para exibir os produtos na tela
+        function exibirProdutos() {
+            const divLista = document.getElementById("listaProdutos");
+            if (produtos.length === 0) {
+                divLista.innerHTML = "<p>Nenhum produto cadastrado.</p>";
+                return;
+            }
+
+            let html = "<strong>Lista de Produtos:</strong><ul>";
+            produtos.forEach((produto, index) => {
+                html += `<li>${produto.nome} - R$${produto.preco}</li>`;
+            });
+            html += "</ul>";
+
+            divLista.innerHTML = html;
+        }
+
+        // Função para adicionar um novo produto
+        function adicionarProduto() {
+            const novoProduto = prompt("Digite o nome do produto:");
+            const novoPreco = parseFloat(prompt("Digite o preço do produto:"));
+
+            if (novoProduto && !isNaN(novoPreco)) {
+                produtos.push({ nome: novoProduto, preco: novoPreco });
+                exibirProdutos();
+            } else {
+                alert("Por favor, insira dados válidos.");
+            }
+        }
+
+        // Função para remover o último produto
+        function removerUltimoProduto() {
+            if (produtos.length > 0) {
+                produtos.pop();
+                exibirProdutos();
+            } else {
+                alert("A lista já está vazia.");
+            }
+        }
+
+        // Mostrar os produtos iniciais ao carregar a página
+        window.onload = exibirProdutos;
+    </script>
+
+</body>
+</html>

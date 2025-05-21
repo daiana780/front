@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Números Pares</title>
+    <style>
+        body { font-family: Arial; text-align: center; padding: 2rem; }
+        button { padding: 0.6rem 1.2rem; background-color: #007BFF; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        #resultado { margin-top: 2rem; white-space: pre-wrap; background: #fff; padding: 1rem; border-radius: 5px; display: inline-block; max-width: 400px; text-align: left; }
+    </style>
+</head>
+<body>
+
+    <h1>Exibir Números Pares de 0 a 100</h1>
+    <button onclick="mostrarPares()">Mostrar Números</button>
+    <div id="resultado"></div>
+
+    <script>
+        function mostrarPares() {
+            let resultado = '';
+            for (let i = 0; i <= 100; i++) {
+                if (i % 2 === 0) resultado += i + '\n';
+            }
+            document.getElementById('resultado').innerText = resultado;
+        }
+    </script>
+
+</body>
+</html>

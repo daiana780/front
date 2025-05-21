@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Aumento Salarial</title>
+    <style>
+        body { font-family: Arial; text-align: center; padding: 2rem; }
+        input { width: 200px; padding: 0.5rem; margin: 0.5rem; }
+        button { padding: 0.6rem 1.2rem; background-color: #007BFF; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        #resultado { margin-top: 2rem; background: #fff; padding: 1rem; border-radius: 5px; display: inline-block; max-width: 400px; text-align: left; white-space: pre-wrap; }
+    </style>
+</head>
+<body>
+
+    <h1>Calculadora de Aumento Salarial (10%)</h1>
+    <input type="number" id="salario" placeholder="Salário Atual"><br>
+    <button onclick="calcularAumento()">Calcular</button>
+
+    <div id="resultado"></div>
+
+    <script>
+        function aumentosalario(salario) {
+            return salario + (salario * 0.10);
+        }
+
+        function calcularAumento() {
+            const salario = parseFloat(document.getElementById("salario").value);
+            if (isNaN(salario) || salario <= 0) {
+                document.getElementById("resultado").innerText = "Digite um salário válido.";
+                return;
+            }
+
+            const novo = aumentosalario(salario);
+            document.getElementById("resultado").innerText =
+                "Salário Antigo: R$ " + salario.toFixed(2) + "\n\n" +
+                "Novo Salário (+10%): R$ " + novo.toFixed(2);
+        }
+    </script>
+
+</body>
+</html>
